@@ -9,12 +9,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
+const indexRouter = require('./routes/indexRouter');
+const productRouter = require('./routes/productRouter');
+const categoryRouter = require('./routes/categoryRouter');
+
 const PORT = Number(process.env.PORT) || 3000;
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.use('/', indexRouter)
+app.use('/products', productRouter);
+app.use('/categories', categoryRouter);
+
+app.use('/', (req, res) => {
+    res.status(404).render('404');
 })
-// app.use('/', indexRouter);
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Listening on Port ${PORT} and host 0.0.0.0`)

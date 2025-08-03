@@ -1,0 +1,31 @@
+:root {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* HEADER */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav>ul {
+    font-size: 20px;
+    display: flex;
+    list-style-type: none;
+    gap: 10px;
+    padding-left: 100px;
+    border: 1px black dashed;
+}
+
+.searchContainer {
+    /* display: flex; */
+    align-content: center;
+}
+
+/* FOOTER */
+footer {
+    border-top: black 2px dashed;
+    /* position: */
+
+}

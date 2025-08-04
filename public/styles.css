@@ -4,6 +4,10 @@
 
 /* HEADER */
 
+header {
+    border-bottom: 2px black dashed;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -26,6 +30,50 @@ nav>ul {
 /* FOOTER */
 footer {
     border-top: black 2px dashed;
-    /* position: */
+    height: 5vh;
+    text-align: center;
+    padding-top: 20px;
+}
 
+/* INDEX */
+
+.indexContainer {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px black dahsed;
+}
+
+.gotoLink {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(253, 141, 253);
+    border: 1px black dashed;
+    margin: 20px;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    border-radius: 18px;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.gotoProducts,
+.gotoCategories {
+    font-size: 22px;
+
+    /* width: 150px; */
+    /* height: 50px; */
+}
+
+.mainContainer {
+    background-color: lightblue;
+    padding: 0 60px;
+    height: 83vh;
+}
+
+.categoriesContainer,
+.productsContainer {
+    padding: 0 20px;
 }

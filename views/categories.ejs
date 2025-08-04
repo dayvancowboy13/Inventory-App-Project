@@ -6,7 +6,21 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-        <h1>Categories</h1>
+        <div class="mainContainer">
+            <h1>Categories</h1>
+            <div class="categoriesContainer">
+                <ul>
+                    <% if(locals.categories) {%>
+                        <% categories.forEach(category=> {%>
+                            <li>
+                                Name: <%= category.cat_name %> <br>
+                                    Description: <%= category.description %> <br>
+                            </li> <br>
+                            <% });%>
+                                <% }%>
+                </ul>
+            </div>
+        </div>
 
         <%- include('./partials/footer.ejs') %>
 

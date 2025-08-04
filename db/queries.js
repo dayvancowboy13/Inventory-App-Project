@@ -1,8 +1,19 @@
 const pool = require('./pool');
 
-exports.getAll = async function () {
+//  item_id | name | description | manufacturer_id | category_id | price | quantity | image
+
+exports.getAllItems = async function () {
     console.log('Querying for all rows...');
-    const { rows } = await pool.query(`SELECT * FROM messages`);
+    const { rows } = await pool.query(`SELECT item_id, item_name, items.description, 
+        manufacturers.manu_name, categories.cat_name, price, quantity, image FROM items
+        INNER JOIN manufacturers ON items.manufacturer_id = manufacturers.manufacturer_id
+        INNER JOIN categories ON items.category_id = categories.category_id`);
+    return rows;
+}
+
+exports.getAllCategories = async function () {
+    console.log('Querying for all categories...');
+    const { rows } = await pool.query(`SELECT * FROM categories`);
     return rows;
 }
 

@@ -6,7 +6,27 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-        <h1>Products</h1>
+        <div class="mainContainer">
+            <h1>Products</h1>
+            <a href="/products/add">
+                <div class="addProduct">Add Product</div>
+            </a>
+            <div class="productContainer">
+                <ul>
+                    <% if(locals.products) {%>
+                        <% products.forEach(product=> {%>
+                            <li>
+                                Name: <%= product.item_name %> <br>
+                                    Manufacturer: <%= product.manu_name %> <br>
+                                        Price: <%= product.price %> <br>
+                                            Qty: <%= product.quantity %> <br>
+                                                Category: <%= product.cat_name %> <br>
+                            </li> <br>
+                            <% });%>
+                                <% }%>
+                </ul>
+            </div>
+        </div>
 
         <%- include('./partials/footer.ejs') %>
 

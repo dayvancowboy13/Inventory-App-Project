@@ -6,7 +6,23 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-        <h1>Welcome to Blorps Gizmos and Gadgets!</h1>
+        <div class="mainContainer">
+
+            <h1>Welcome to Blorps Gizmos and Gadgets!</h1>
+            <div class="indexContainer">
+                <a href="/products" class="gotoLink">
+                    <div class="gotoProducts">
+                        Products
+                    </div>
+                </a>
+                <a href="/categories" class="gotoLink">
+                    <div class="gotoCategories">
+                        Categories
+                    </div>
+                </a>
+            </div>
+        </div>
+
 
         <%- include('./partials/footer.ejs') %>
 

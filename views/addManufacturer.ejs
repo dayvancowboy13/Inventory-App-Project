@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title>Add Manufacturer</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+        <div class="mainContainer">
+            <h1>Add New Manufacturer</h1>
+            <div class="addManufacturerContainer">
+                <form action="/add" method="post">
+                    <div class="formItem">
+                        <label for="manufacturerName">Manufacturer Name:</label>
+                        <input type="text" name="manufacturerName" id="manufacturerName">
+                    </div>
+                    <div class="formItem">
+                        <label for="manufacturerLocation">Manufacturer Location:</label>
+                        <input type="text" name="manufacturerLocation" id="manufacturerLocation">
+                    </div>
+                    <div class="formItem">
+                        <label for="manufacturerNotes">Notes:</label>
+                        <textarea name="manufacturerNotes" id="manufacturerNotes">
+
+                        </textarea>
+                    </div>
+                    <button type="submit">Add Manufacturer</button>
+                </form>
+            </div>
+
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>

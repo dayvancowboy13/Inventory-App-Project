@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Manufacturers</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+        <div class="mainContainer">
+            <h1>Manufacturers</h1>
+            <a href="/manufacturers/add">
+                <div class="addManufacturer">Add Manufacturer</div>
+            </a>
+            <div class="manufacturersContainer">
+                <ul>
+                    <% if(locals.manufacturers) {%>
+                        <% manufacturers.forEach(manu=> {%>
+                            <li>
+                                Name: <%= manu.manu_name %> <br>
+                                    Location: <%= manu.location %> <br>
+                                        Notes: <%= manu.notes %> <br>
+                            </li> <br>
+                            <% });%>
+                                <% }%>
+                </ul>
+            </div>
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>

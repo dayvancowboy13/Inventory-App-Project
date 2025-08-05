@@ -12,12 +12,15 @@ app.use(express.urlencoded({ extended: true }));
 const indexRouter = require('./routes/indexRouter');
 const productRouter = require('./routes/productRouter');
 const categoryRouter = require('./routes/categoryRouter');
+const manufacturerRouter = require('./routes/manufacturerRouter');
 
 const PORT = Number(process.env.PORT) || 3000;
 
 app.use('/', indexRouter)
 app.use('/products', productRouter);
 app.use('/categories', categoryRouter);
+app.use('/manufacturers', manufacturerRouter);
+
 
 app.use('/', (req, res) => {
     res.status(404).render('404');

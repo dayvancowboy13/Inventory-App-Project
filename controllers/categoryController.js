@@ -5,3 +5,7 @@ exports.get = async (req, res) => {
     console.log(content);
     res.render('categories', { categories: content });
 };
+
+exports.addCategory = async (req, res) => {
+    res.render('addCategory');
+}

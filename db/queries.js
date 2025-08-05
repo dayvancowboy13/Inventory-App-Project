@@ -28,4 +28,12 @@ exports.getMessage = async function (id) {
     return rows;
 }
 
+exports.getManufacturers = async function () {
+    const { rows } = await pool.query(`SELECT * FROM manufacturers`);
+    return rows;
+}
 
+exports.getCategories = async function () {
+    const { rows } = await pool.query(`SELECT * FROM categories`);
+    return rows;
+}

@@ -7,6 +7,9 @@ exports.get = async (req, res) => {
     res.render('products', { products: content });
 }
 
-exports.createProduct = (req, res) => {
-    res.send('New product page :)');
+exports.createProduct = async (req, res) => {
+    let manufs = await db.getManufacturers();
+    let cats = await db.getCategories();
+
+    res.render('addProduct', { manufacturers: manufs, categories: cats });
 }

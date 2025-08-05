@@ -15,19 +15,27 @@
                         <input type="text" name="productName" id="productName">
                     </div>
                     <div class="formItem">
-                        <label for="manufacturer">Manufacturer:</label>
+                        <label for="selectManufacturer">Manufacturer:</label>
                         <select name="manufacturer" id="selectManufacturer">
-
+                            <% manufacturers.forEach(manu=> { %>
+                                <option value="<%= manu.manu_name %>">
+                                    <%= manu.manu_name %>
+                                </option>
+                                <% }); %>
                         </select>
                     </div>
                     <div class="formItem">
-                        <label for="productCategory">Category:</label>
-                        <select name="manufacturer" id="selectManufacturer">
-
+                        <label for="selectCategory">Category:</label>
+                        <select name="productCategory" id="selectCategory">
+                            <% categories.forEach(cat=> { %>
+                                <option value="<%= cat.cat_name %>">
+                                    <%= cat.cat_name %>
+                                </option>
+                                <% }); %>
                         </select>
                     </div>
                     <div class="formItem">
-                        <label for="productPrice">Price:</label>
+                        <label for="productPrice">Price: $</label>
                         <input type="number" id="productPrice">
                     </div>
                     <div class="formItem">
@@ -40,6 +48,7 @@
 
                         </textarea>
                     </div>
+                    <button type="submit">Add Product</button>
                 </form>
             </div>
 

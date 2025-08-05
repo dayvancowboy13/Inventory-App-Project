@@ -77,3 +77,21 @@ footer {
 .productsContainer {
     padding: 0 20px;
 }
+
+/* ADD PRODUCT PAGE */
+
+.addProductContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: lightcyan;
+    padding: 25px;
+}
+
+.addProductContainer>form {
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    align-items: center;
+    gap: 12px;
+
+}

@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>Add Products</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+        <div class="mainContainer">
+            <h1>Add New Product</h1>
+            <div class="addProductContainer">
+                <form action="/add" method="post">
+                    <div class="formItem">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" name="productName" id="productName">
+                    </div>
+                    <div class="formItem">
+                        <label for="manufacturer">Manufacturer:</label>
+                        <select name="manufacturer" id="selectManufacturer">
+
+                        </select>
+                    </div>
+                    <div class="formItem">
+                        <label for="productCategory">Category:</label>
+                        <select name="manufacturer" id="selectManufacturer">
+
+                        </select>
+                    </div>
+                    <div class="formItem">
+                        <label for="productPrice">Price:</label>
+                        <input type="number" id="productPrice">
+                    </div>
+                    <div class="formItem">
+                        <label for="productQuantity">Quantity:</label>
+                        <input type="number" id="productQuantity">
+                    </div>
+                    <div class="formItem">
+                        <label for="productDescription">Description:</label>
+                        <textarea name="productDescription" id="productDescription">
+
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+
+</body>
+
+</html>

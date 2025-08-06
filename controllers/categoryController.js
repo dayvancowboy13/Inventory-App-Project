@@ -8,4 +8,13 @@ exports.get = async (req, res) => {
 
 exports.addCategory = async (req, res) => {
     res.render('addCategory');
-}
+};
+
+exports.post = async (req, res) => {
+    console.log(req.body);
+    await db.addCategory(
+        req.body.categoryName,
+        req.body.categoryDescription,
+    )
+    res.redirect('./');
+};

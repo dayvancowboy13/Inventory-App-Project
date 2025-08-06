@@ -9,16 +9,14 @@
         <div class="mainContainer">
             <h1>Add New Category</h1>
             <div class="addCategoryContainer">
-                <form action="/add" method="post">
+                <form action="/categories/add" method="post">
                     <div class="formItem">
                         <label for="categoryName">Category Name:</label>
                         <input type="text" name="categoryName" id="categoryName">
                     </div>
                     <div class="formItem">
                         <label for="categoryDescription">Description:</label>
-                        <textarea name="categoryDescription" id="categoryDescription">
-
-                        </textarea>
+                        <textarea name="categoryDescription" id="categoryDescription"></textarea>
                     </div>
                     <button type="submit">Add Category</button>
                 </form>

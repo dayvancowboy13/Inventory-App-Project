@@ -50,3 +50,11 @@ exports.addProduct = async function (name, manufacturer, category, price, qty, d
         INSERT INTO items (item_name, manufacturer_id, category_id, price, quantity, description) 
         VALUES($1, $2, $3, $4, $5, $6)`, [name, man_id, cat_id, price, qty, desc])
 }
+
+exports.addCategory = async function (name, description) {
+    console.log('adding new category...');
+
+    await pool.query(`INSERT INTO categories (cat_name, description) VALUES($1, $2)`,
+        [name, description]
+    )
+}

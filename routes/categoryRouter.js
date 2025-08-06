@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const categoryController = require('../controllers/categoryController')
 
-const categorytRouter = Router();
+const categoryRouter = Router();
 
-categorytRouter.get('/', categoryController.get);
-categorytRouter.get('/add', categoryController.addCategory);
+categoryRouter.get('/', categoryController.get);
+categoryRouter.get('/add', categoryController.addCategory);
 
-module.exports = categorytRouter;
+module.exports = categoryRouter;

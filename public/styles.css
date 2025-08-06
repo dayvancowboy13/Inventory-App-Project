@@ -70,7 +70,7 @@ footer {
 .mainContainer {
     background-color: lightblue;
     padding: 0 60px;
-    height: 83vh;
+    min-height: 83vh;
 }
 
 .categoriesContainer,

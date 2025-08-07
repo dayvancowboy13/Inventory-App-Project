@@ -3,12 +3,27 @@ const pool = require('./pool');
 //  item_id | name | description | manufacturer_id | category_id | price | quantity | image
 
 exports.getAllItems = async function () {
-    console.log('Querying for all rows...');
+    console.log('Querying for items...');
     const { rows } = await pool.query(`SELECT item_id, item_name, items.description, 
         manufacturers.manu_name, categories.cat_name, price, quantity, image FROM items
         INNER JOIN manufacturers ON items.manufacturer_id = manufacturers.manufacturer_id
         INNER JOIN categories ON items.category_id = categories.category_id`);
     return rows;
+}
+
+exports.getItemById = async function (id) {
+    console.log('retreiving item from db with id ', id);
+    const { rows } = await pool.query(`SELECT item_id, item_name, items.description, 
+        manufacturers.manu_name, categories.cat_name, price, quantity, image FROM items
+        INNER JOIN manufacturers ON items.manufacturer_id = manufacturers.manufacturer_id
+        INNER JOIN categories ON items.category_id = categories.category_id
+        WHERE item_id = $1`, [id]);
+    return rows;
+}
+
+exports.deleteItemById = async function (id) {
+    console.log("deleting item with id", id);
+    await pool.query(`DELETE FROM items WHERE items.item_id = $1`, [id]);
 }
 
 // exports.insertMessage = async function (author, message) {
@@ -56,5 +71,13 @@ exports.addCategory = async function (name, description) {
 
     await pool.query(`INSERT INTO categories (cat_name, description) VALUES($1, $2)`,
         [name, description]
-    )
+    );
+}
+
+exports.addManufacturer = async function (name, location, notes) {
+    console.log('adding new manufacturer to db...');
+
+    await pool.query(`INSERT INTO manufacturers (manu_name, location, notes) VALUES ($1, $2, $3)`,
+        [name, location, notes]
+    );
 }

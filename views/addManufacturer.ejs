@@ -9,7 +9,7 @@
         <div class="mainContainer">
             <h1>Add New Manufacturer</h1>
             <div class="addManufacturerContainer">
-                <form action="/add" method="post">
+                <form action="/manufacturers/add" method="post">
                     <div class="formItem">
                         <label for="manufacturerName">Manufacturer Name:</label>
                         <input type="text" name="manufacturerName" id="manufacturerName">
@@ -20,9 +20,7 @@
                     </div>
                     <div class="formItem">
                         <label for="manufacturerNotes">Notes:</label>
-                        <textarea name="manufacturerNotes" id="manufacturerNotes">
-
-                        </textarea>
+                        <textarea name="manufacturerNotes" id="manufacturerNotes"></textarea>
                     </div>
                     <button type="submit">Add Manufacturer</button>
                 </form>

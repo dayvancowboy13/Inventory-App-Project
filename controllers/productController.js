@@ -2,7 +2,7 @@ const db = require('../db/queries');
 
 exports.get = async (req, res) => {
     let content = await db.getAllItems();
-
+    console.log(content);
     res.render('products', { products: content });
 }
 
@@ -14,7 +14,6 @@ exports.createProduct = async (req, res) => {
 }
 
 exports.post = async (req, res) => {
-    console.log('Adding new product...')
     await db.addProduct(
         req.body.productName,
         req.body.manufacturer,
@@ -24,4 +23,18 @@ exports.post = async (req, res) => {
         req.body.productDescription
     )
     res.redirect('./');
+}
+
+exports.detailPage = async (req, res) => {
+    const id = req.url.slice(1);
+    let content = await db.getItemById(id);
+    res.render('productDetails', { product: content, deleteFunc: db.deleteItemById });
+}
+
+exports.deleteItem = async (req, res) => {
+    const id = Number(req.url.slice(1));
+    await db.deleteItemById(id).then(result => {
+        res.json({ redirect: '/products' })
+    })
+        .catch(err => console.log(err));
 }

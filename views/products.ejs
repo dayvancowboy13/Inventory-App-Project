@@ -15,14 +15,16 @@
                 <ul>
                     <% if(locals.products) {%>
                         <% products.forEach(product=> {%>
-                            <li>
-                                Name: <%= product.item_name %> <br>
-                                    Manufacturer: <%= product.manu_name %> <br>
-                                        Price: <%= product.price %> <br>
-                                            Qty: <%= product.quantity %> <br>
-                                                Category: <%= product.cat_name %> <br>
-                                                    Description: <%= product.description %> <br>
-                            </li> <br>
+                            <a href="/products/<%= product.item_id %>">
+                                <li>
+                                    Name: <%= product.item_name %> <br>
+                                        Manufacturer: <%= product.manu_name %> <br>
+                                            Price: <%= product.price %> <br>
+                                                Qty: <%= product.quantity %> <br>
+                                                    Category: <%= product.cat_name %> <br>
+                                                        Description: <%= product.description %> <br>
+                                </li> <br>
+                            </a>
                             <% });%>
                                 <% }%>
                 </ul>

@@ -8,9 +8,46 @@
     <%- include('./partials/header.ejs') %>
         <div class="mainContainer">
             <h1>More info on the product!</h1>
+
+            <% if(locals.product) {%>
+                <div class="productDetailCard">
+                    <% product.forEach(p=> {%>
+                        Name: <%= p.item_name %> <br>
+                            Manufacturer: <%= p.manu_name %> <br>
+                                Price: <%= p.price %> <br>
+                                    Qty: <%= p.quantity %> <br>
+                                        Category: <%= p.cat_name %> <br>
+                                            Description: <%= p.description %> <br>
+                                                ID: <%= p.item_id %> <br>
+
+                                                    <br>
+
+                                                    <button type="submit" id="deleteItemBtn" class="deleteItem"
+                                                        data-id="<%- p.item_id%>">Delete</button>
+                                                    <% });%>
+                                                        <% }%>
+                </div>
         </div>
 
         <%- include('./partials/footer.ejs') %>
+            <script>
+                const delBtn = document.querySelector("button#deleteItemBtn");
+                delBtn.addEventListener('click', e => {
+                    const ep = `/products/${delBtn.dataset.id}`;
+                    console.log(ep)
+                    let delCheck = confirm('Are you sure you want to delete this item from the database?')
+                    if (delCheck) {
+                        fetch(ep, {
+                            method: 'DELETE'
+                        }).then((response) => response.json())
+                            .then((data) => {
+                                console.log(data.redirect);
+                                window.location.href = data.redirect
+                            })
+                            .catch(err => console.log(typeof err));
+                    }
+                });
+            </script>
 
 </body>
 

@@ -28,7 +28,9 @@ exports.post = async (req, res) => {
 exports.detailPage = async (req, res) => {
     const id = req.url.slice(1);
     let content = await db.getItemById(id);
-    res.render('productDetails', { product: content, deleteFunc: db.deleteItemById });
+    let manufs = await db.getManufacturers();
+    let cats = await db.getCategories();
+    res.render('productDetails', { product: content, manufacturers: manufs, categories: cats });
 }
 
 exports.deleteItem = async (req, res) => {
@@ -37,4 +39,21 @@ exports.deleteItem = async (req, res) => {
         res.json({ redirect: '/products' })
     })
         .catch(err => console.log(err));
+}
+
+exports.editItem = async (req, res) => {
+    const id = Number(req.url.split('/')[2]);
+    await db.updateProduct(
+        id,
+        req.body.productName,
+        req.body.manufacturer,
+        req.body.productCategory,
+        req.body.productPrice,
+        req.body.productQuantity,
+        req.body.productDescription
+    );
+    res.redirect('../');
+
+    // console.log(req.body);
+
 }

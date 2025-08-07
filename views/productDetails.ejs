@@ -61,16 +61,13 @@
                                     </select><br>
                                     <label for="productDescription">Description:</label>
                                     <textarea name="productDescription"
-                                        id="productDescription"><%= p.description %></textarea> <br>
-
-
-                                    <br>
-
-                                    <button id="cancelEditBtn" class="editItem" data-id="<%- p.item_id%>">Cancel
-                                        Edit</button>
+                                        id="productDescription"><%= p.description %></textarea>
+                                    <br><br>
                                     <button type="submit" id="submitEditBtn" class="editItem"
                                         data-id="<%- p.item_id%>">Submit Edit</button>
                                 </form>
+                                <button id="cancelEditBtn" class="editItem" data-id="<%- p.item_id%>">Cancel
+                                    Edit</button>
                             </div>
                             <% });%>
                                 <% }%>
@@ -110,22 +107,9 @@
                     submitEditBtn.addEventListener('click', () => {
                         let staticDetails = document.querySelector('.productDetailsBody');
                         let editDetails = document.querySelector('.editProductDetails');
-                        const ep = `/products/${submitEditBtn.dataset.id}`;
 
                         staticDetails.style.display = 'block';
                         editDetails.style.display = 'none';
-
-                        console.log('submitting changes to db...');
-
-                        // fetch(ep, {
-                        //     method: 'PUT'
-                        // }).then((response) => response.json())
-                        //     .then((data) => {
-                        //         console.log(data.redirect);
-                        //         window.location.href = data.redirect
-                        //     })
-                        //     .catch(err => console.log(typeof err));
-
                     });
 
                     cancelEditBtn.addEventListener('click', () => {
@@ -134,7 +118,6 @@
 
                         staticDetails.style.display = 'block';
                         editDetails.style.display = 'none';
-
                     });
 
                 </script>

@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>Edit Category</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+        <div class="mainContainer">
+            <h1>Make changes to the category:</h1>
+
+            <% if(locals.catInfo) {%>
+                <div class="productDetailCard">
+                    <% catInfo.forEach(c=> {%>
+                        <div class="editCategoryDetails">
+                            <form action="/categories/edit/<%= c.category_id %>" method="POST">
+                                <label for="categoryName">Name:</label>
+                                <input type="text" name="categoryName" id="categoryName" value="<%= c.cat_name %>"><br>
+                                <label for="categoryDescription">Description:</label>
+                                <textarea name="categoryDescription"
+                                    id="categoryDescription"><%= c.description %></textarea>
+                                <br><br>
+                                <button type="submit" id="submitEditBtn" class="editItem"
+                                    data-id="<%- c.category_id%>">Submit Edit</button>
+                            </form>
+                            <button id="cancelEditBtn" class="editItem" data-id="<%- c.category_id%>">Cancel
+                                Edit</button>
+                        </div>
+                        <% });%>
+                            <% }%>
+                </div>
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+            <script>
+                // const delBtn = document.querySelector("button#deleteItemBtn");
+                const cancelEditBtn = document.querySelector("button#cancelEditBtn");
+                const submitEditBtn = document.querySelector("button#submitEditBtn");
+
+                // delBtn.addEventListener('click', e => {
+                //     const ep = `/products/${delBtn.dataset.id}`;
+                //     console.log(ep)
+                //     let delCheck = confirm('Are you sure you want to delete this item from the database?')
+                //     if (delCheck) {
+                //         fetch(ep, {
+                //             method: 'DELETE'
+                //         }).then((response) => response.json())
+                //             .then((data) => {
+                //                 console.log(data.redirect);
+                //                 window.location.href = data.redirect
+                //             })
+                //             .catch(err => console.log(typeof err));
+                //     }
+                // });
+
+                submitEditBtn.addEventListener('click', () => {
+                    console.log('submit clicked')
+                });
+
+                cancelEditBtn.addEventListener('click', () => {
+
+                    console.log('cancel clicked')
+                    window.location = '/categories';
+                });
+
+            </script>
+
+</body>
+
+</html>

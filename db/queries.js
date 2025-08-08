@@ -21,6 +21,13 @@ exports.getItemById = async function (id) {
     return rows;
 }
 
+exports.getCategoryById = async function (id) {
+    console.log('retrieving category with id', id);
+    const { rows } = await pool.query(`SELECT * FROM categories
+        WHERE category_id = $1`, [id]);
+    return rows;
+}
+
 exports.deleteItemById = async function (id) {
     console.log("deleting item with id", id);
     await pool.query(`DELETE FROM items WHERE items.item_id = $1`, [id]);
@@ -38,12 +45,12 @@ exports.deleteItemById = async function (id) {
 // }
 
 exports.getManufacturers = async function () {
-    const { rows } = await pool.query(`SELECT * FROM manufacturers`);
+    const { rows } = await pool.query(`SELECT * FROM manufacturers ORDER BY manufacturer_id`);
     return rows;
 }
 
 exports.getCategories = async function () {
-    const { rows } = await pool.query(`SELECT * FROM categories`);
+    const { rows } = await pool.query(`SELECT * FROM categories ORDER BY category_id`);
     return rows;
 }
 
@@ -84,6 +91,12 @@ exports.addCategory = async function (name, description) {
     await pool.query(`INSERT INTO categories (cat_name, description) VALUES($1, $2)`,
         [name, description]
     );
+}
+
+exports.updateCategory = async function (id, name, desc) {
+    console.log('updating category with id', id)
+    await pool.query(`
+        UPDATE categories SET cat_name = $1, description = $2 WHERE category_id = $3`, [name, desc, id]);
 }
 
 exports.addManufacturer = async function (name, location, notes) {

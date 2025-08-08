@@ -18,6 +18,8 @@
                             <li>
                                 Name: <%= category.cat_name %> <br>
                                     Description: <%= category.description %> <br>
+                                        ID: <%= category.category_id %> <br>
+                                            <a href="/categories/edit/<%= category.category_id %>">Edit</a>
                             </li> <br>
                             <% });%>
                                 <% }%>

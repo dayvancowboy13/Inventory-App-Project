@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>Edit Manufacturer</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+        <div class="mainContainer">
+            <h1>Make changes to the manufacturer:</h1>
+
+            <% if(locals.manInfo) {%>
+                <div class="productDetailCard">
+                    <% manInfo.forEach(m=> {%>
+                        <div class="editManufacturerDetails">
+                            <form action="/manufacturers/edit/<%= m.manufacturer_id %>" method="POST">
+                                <label for="manufacturerName">Name:</label>
+                                <input type="text" name="manufacturerName" id="manufacturerName"
+                                    value="<%= m.manu_name %>"><br>
+                                <label for="manufacturerLocation">Name:</label>
+                                <input type="text" name="manufacturerLocation" id="manufacturerLocation"
+                                    value="<%= m.location %>"><br>
+                                <label for="manufacturerNotes">Description:</label>
+                                <textarea name="manufacturerNotes" id="manufacturerNotes"><%= m.notes %></textarea>
+                                <br><br>
+                                <button type="submit" id="submitEditBtn" class="editItem"
+                                    data-id="<%- m.manufacturer_id%>">Submit Edit</button>
+                            </form>
+                            <button id="cancelEditBtn" class="editItem" data-id="<%- m.manufacturer_id%>">Cancel
+                                Edit</button>
+                        </div>
+                        <% });%>
+                            <% }%>
+                </div>
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+            <script>
+                // const delBtn = document.querySelector("button#deleteItemBtn");
+                const cancelEditBtn = document.querySelector("button#cancelEditBtn");
+                const submitEditBtn = document.querySelector("button#submitEditBtn");
+
+                // delBtn.addEventListener('click', e => {
+                //     const ep = `/products/${delBtn.dataset.id}`;
+                //     console.log(ep)
+                //     let delCheck = confirm('Are you sure you want to delete this item from the database?')
+                //     if (delCheck) {
+                //         fetch(ep, {
+                //             method: 'DELETE'
+                //         }).then((response) => response.json())
+                //             .then((data) => {
+                //                 console.log(data.redirect);
+                //                 window.location.href = data.redirect
+                //             })
+                //             .catch(err => console.log(typeof err));
+                //     }
+                // });
+
+                submitEditBtn.addEventListener('click', () => {
+                    console.log('submit')
+                });
+
+                cancelEditBtn.addEventListener('click', () => {
+
+                    console.log('cancel')
+                    window.location = '/manufacturers';
+                });
+
+            </script>
+
+</body>
+
+</html>

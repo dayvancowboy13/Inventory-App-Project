@@ -28,6 +28,13 @@ exports.getCategoryById = async function (id) {
     return rows;
 }
 
+exports.getManufacturerById = async function (id) {
+    console.log('retrieving manufacturer with id', id);
+    const { rows } = await pool.query(`SELECT * FROM manufacturers
+        WHERE manufacturer_id = $1`, [id]);
+    return rows;
+}
+
 exports.deleteItemById = async function (id) {
     console.log("deleting item with id", id);
     await pool.query(`DELETE FROM items WHERE items.item_id = $1`, [id]);
@@ -105,4 +112,9 @@ exports.addManufacturer = async function (name, location, notes) {
     await pool.query(`INSERT INTO manufacturers (manu_name, location, notes) VALUES ($1, $2, $3)`,
         [name, location, notes]
     );
+}
+
+exports.updateManufacturer = async function (id, name, location, notes) {
+    await pool.query(`
+        UPDATE manufacturers SET manu_name = $1, location = $2, notes = $3 WHERE manufacturer_id = $4`, [name, location, notes, id]);
 }

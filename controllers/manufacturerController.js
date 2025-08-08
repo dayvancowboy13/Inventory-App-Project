@@ -19,3 +19,21 @@ exports.post = async (req, res) => {
     console.log('done with the important stuff, trying redirect...')
     res.redirect('./');
 }
+
+exports.getEditPage = async (req, res) => {
+    console.log('sending the edit page')
+    const id = Number(req.url.split('/')[2]);
+    const manInfo = await db.getManufacturerById(id);
+    res.render('editManufacturer', { manInfo });
+};
+
+exports.editManufacturer = async (req, res) => {
+    const id = Number(req.url.split('/')[2]);
+    await db.updateManufacturer(
+        id,
+        req.body.manufacturerName,
+        req.body.manufacturerLocation,
+        req.body.manufacturerNotes
+    );
+    res.redirect('/manufacturers');
+}

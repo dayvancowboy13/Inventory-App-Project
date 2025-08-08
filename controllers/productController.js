@@ -53,8 +53,4 @@ exports.editItem = async (req, res) => {
         req.body.productDescription
     );
     res.redirect('/products/' + id);
-    // res.refresh();
-
-    // console.log(req.body);
-
 }

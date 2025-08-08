@@ -60,7 +60,8 @@ footer {
 }
 
 .gotoProducts,
-.gotoCategories {
+.gotoCategories,
+.gotoManufacturers {
     font-size: 22px;
 
     /* width: 150px; */

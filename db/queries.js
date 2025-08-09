@@ -118,3 +118,14 @@ exports.updateManufacturer = async function (id, name, location, notes) {
     await pool.query(`
         UPDATE manufacturers SET manu_name = $1, location = $2, notes = $3 WHERE manufacturer_id = $4`, [name, location, notes, id]);
 }
+
+exports.countTableEntries = async function () {
+    var { rows } = await pool.query(`SELECT count(*) FROM items`);
+    let productCount = Number(rows[0].count);
+    var { rows } = await pool.query(`SELECT count(*) FROM categories`);
+    let catCount = Number(rows[0].count);
+    var { rows } = await pool.query(`SELECT count(*) FROM manufacturers`);
+    let manuCount = Number(rows[0].count);
+
+    return { productCount, catCount, manuCount };
+}

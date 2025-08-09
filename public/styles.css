@@ -80,21 +80,30 @@ footer {
 
 /* INDEX */
 
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(67, 72, 77);
+}
+
 .indexContainer {
     margin: 40px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
+    justify-content: space-between;
     border: 1px black dahsed;
 }
 
 .gotoLink {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: hsl(155, 79%, 48%);
-    border: 1px black dashed;
+    background-color: hsl(214, 6%, 87%);
+    /* border: 1px black dashed; */
     margin: 20px;
-    width: 150px;
+    min-width: 150px;
+    width: 230px;
     height: 50px;
     text-align: center;
     border-radius: 18px;
@@ -102,10 +111,17 @@ footer {
     text-decoration: none;
 }
 
+.gotoLink:hover {
+    background-color: hsl(214, 6%, 62%);
+
+    box-shadow: rgb(185, 185, 185) 0px 6px 20px;
+}
+
 .gotoProducts,
 .gotoCategories,
 .gotoManufacturers {
     font-size: 22px;
+
 
     /* width: 150px; */
     /* height: 50px; */
@@ -128,6 +144,10 @@ footer {
     /* background-color: rgb(183, 183, 255); */
     padding: 0 20px;
 
+}
+
+.dbCount {
+    font-weight: 700;
 }
 
 /* PRODUCT PAGE */
@@ -217,6 +237,7 @@ td:first-of-type {
     color: rgb(67, 72, 77);
     align-self: center;
     margin-top: 13px;
+    box-sizing: border-box;
 }
 
 .addAnchor:hover {
@@ -238,4 +259,8 @@ td:first-of-type {
     text-align: center;
     font-weight: 600;
     box-sizing: border-box;
+}
+
+.add:hover {
+    background-color: hsl(155, 79%, 40%);
 }

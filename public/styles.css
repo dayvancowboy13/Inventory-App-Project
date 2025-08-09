@@ -210,12 +210,18 @@ td:first-of-type {
 
 /* ADD PRODUCT PAGE */
 
+label {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
 .addProductContainer,
 .addCategoryContainer,
 .addManufacturerContainer {
     display: flex;
     flex-direction: column;
-    background-color: lightcyan;
+    background-color: rgb(236, 236, 236);
     padding: 25px;
 }
 
@@ -225,9 +231,48 @@ td:first-of-type {
     display: flex;
     flex-direction: column;
     /* justify-items: center; */
+    gap: 5px;
     align-items: center;
+    text-align: center;
     gap: 12px;
 
+}
+
+.formItem {
+
+    & input,
+    select,
+    textarea {
+        font-size: 16px;
+        margin-top: 5px;
+        padding: 2px;
+    }
+
+    & input[type=number] {
+        /* background-color: black; */
+        max-width: 4em;
+        text-align: center;
+    }
+
+    & select {
+        text-align: center;
+    }
+}
+
+.submitToTbBtn {
+    font-size: 16px;
+    background-color: hsl(229, 90%, 59%);
+    border: none;
+    border-radius: 14px;
+    padding: 9px;
+    color: rgb(255, 255, 255);
+    font-weight: 50;
+}
+
+.submitToTbBtn:hover {
+    cursor: pointer;
+    background-color: hsl(229, 90%, 49%);
+    box-shadow: rgb(170, 170, 170) 0px 8px 14px;
 }
 
 .addAnchor {

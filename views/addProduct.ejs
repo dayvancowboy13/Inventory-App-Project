@@ -11,11 +11,11 @@
             <div class="addProductContainer">
                 <form action="/products/add" method="post">
                     <div class="formItem">
-                        <label for="productName">Product Name:</label>
+                        <label for="productName">Product Name:</label> <br>
                         <input type="text" name="productName" id="productName">
                     </div>
                     <div class="formItem">
-                        <label for="selectManufacturer">Manufacturer:</label>
+                        <label for="selectManufacturer">Manufacturer:</label> <br>
                         <select name="manufacturer" id="selectManufacturer">
                             <% manufacturers.forEach(manu=> { %>
                                 <option value="<%= manu.manu_name %>">
@@ -25,7 +25,7 @@
                         </select>
                     </div>
                     <div class="formItem">
-                        <label for="selectCategory">Category:</label>
+                        <label for="selectCategory">Category:</label><br>
                         <select name="productCategory" id="selectCategory">
                             <% categories.forEach(cat=> { %>
                                 <option value="<%= cat.cat_name %>">
@@ -35,18 +35,18 @@
                         </select>
                     </div>
                     <div class="formItem">
-                        <label for="productPrice">Price: $</label>
-                        <input type="number" name="productPrice" id="productPrice">
+                        <label for="productPrice">Price: $</label><br>
+                        <input type="number" name="productPrice" id="productPrice" min="0">
                     </div>
                     <div class="formItem">
-                        <label for="productQuantity">Quantity:</label>
-                        <input type="number" name="productQuantity" id="productQuantity">
+                        <label for="productQuantity">Quantity:</label><br>
+                        <input type="number" name="productQuantity" id="productQuantity" min="0">
                     </div>
                     <div class="formItem">
-                        <label for="productDescription">Description:</label>
-                        <textarea name="productDescription" id="productDescription"></textarea>
+                        <label for="productDescription">Description:</label><br>
+                        <textarea name="productDescription" id="productDescription" rows="4"></textarea>
                     </div>
-                    <button type="submit">Add Product</button>
+                    <button class="submitToTbBtn" type="submit">Add Product</button>
                 </form>
             </div>
 

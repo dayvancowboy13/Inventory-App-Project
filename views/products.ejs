@@ -7,27 +7,52 @@
 <body>
     <%- include('./partials/header.ejs') %>
         <div class="mainContainer">
-            <h1>Products</h1>
-            <a href="/products/add">
-                <div class="addProduct">Add Product</div>
-            </a>
-            <div class="productContainer">
-                <ul>
+            <div class="titleBar">
+                <h1>Products</h1>
+                <a class="addAnchor" href="/products/add">
+                    <div class="add">Add</div>
+                </a>
+            </div>
+            <div class="productsContainer">
+                <table class="productsTable">
+                    <tr class="tableHeader">
+                        <th>Name</th>
+                        <th>Manufacturer</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
                     <% if(locals.products) {%>
                         <% products.forEach(product=> {%>
-                            <a href="/products/<%= product.item_id %>">
-                                <li>
-                                    Name: <%= product.item_name %> <br>
-                                        Manufacturer: <%= product.manu_name %> <br>
-                                            Price: <%= product.price %> <br>
-                                                Qty: <%= product.quantity %> <br>
-                                                    Category: <%= product.cat_name %> <br>
-                                                        Description: <%= product.description %> <br>
-                                </li> <br>
+
+                            <tr>
+                                <td>
+                                    <%= product.item_name %>
+                                </td>
+                                <td>
+                                    <%= product.manu_name %>
+                                </td>
+                                <td>
+                                    <%= product.cat_name %>
+                                </td>
+                                <td>
+                                    $<%= product.price %>
+                                </td>
+                                <td>
+                                    <%= product.quantity %>
+                                </td>
+                                <td>
+                                    <%= product.description %>
+                                </td>
+                                <td><a href="/products/<%= product.item_id %>">View</a></td>
+                            </tr>
                             </a>
                             <% });%>
                                 <% }%>
-                </ul>
+
+                </table>
             </div>
         </div>
 

@@ -1,11 +1,19 @@
 :root {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Raleway", arial, Helvetica, sans-serif;
+}
+
+ul {
+    color: rgb(117, 123, 131);
+}
+
+h1 {
+    color: rgb(67, 72, 77);
 }
 
 /* HEADER */
 
 header {
-    border-bottom: 2px black dashed;
+    border-bottom: 5px rgb(117, 123, 131) solid;
 }
 
 nav {
@@ -17,9 +25,25 @@ nav>ul {
     font-size: 20px;
     display: flex;
     list-style-type: none;
-    gap: 10px;
+    gap: 20px;
     padding-left: 100px;
-    border: 1px black dashed;
+    /* border: 1px black dashed; */
+}
+
+li>a {
+    color: rgb(67, 72, 77);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+li>a:hover {
+    color: rgb(67, 72, 77);
+    text-decoration: underline;
+}
+
+li>a:visited {
+    color: rgb(67, 72, 77);
+    text-decoration: none;
 }
 
 .searchContainer {
@@ -29,10 +53,29 @@ nav>ul {
 
 /* FOOTER */
 footer {
-    border-top: black 2px dashed;
+    border-top: 5px rgb(117, 123, 131) solid;
     height: 5vh;
     text-align: center;
     padding-top: 20px;
+
+    color: rgb(117, 123, 131);
+
+    & a {
+        color: rgb(67, 72, 77);
+        font-weight: 500;
+        /* text-decoration: none; */
+    }
+
+    & a:hover {
+        color: rgb(67, 72, 77);
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    & a:visited {
+        color: rgb(67, 72, 77);
+        text-decoration: none;
+    }
 }
 
 /* INDEX */
@@ -48,7 +91,7 @@ footer {
 .gotoLink {
     display: flex;
     flex-direction: column;
-    background-color: rgb(253, 141, 253);
+    background-color: hsl(155, 79%, 48%);
     border: 1px black dashed;
     margin: 20px;
     width: 150px;
@@ -69,14 +112,80 @@ footer {
 }
 
 .mainContainer {
-    background-color: lightblue;
+    background-color: rgb(255, 255, 255);
     padding: 0 60px;
-    min-height: 83vh;
+    height: 81vh;
+    max-height: 82vh;
+    overflow: auto;
+
 }
 
 .categoriesContainer,
-.productsContainer {
+.productsContainer,
+.manufacturersContainer {
+    display: flex;
+    justify-content: center;
+    /* background-color: rgb(183, 183, 255); */
     padding: 0 20px;
+
+}
+
+/* PRODUCT PAGE */
+
+table {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-collapse: collapse;
+    border-bottom: 1px solid rgb(117, 123, 131);
+
+}
+
+tr:first-of-type {
+    /* width: 100%; */
+    background-color: rgb(236, 236, 236);
+}
+
+tr {
+    height: 50px;
+    padding: 0px;
+    /* border-top: 1px solid rgb(117, 123, 131); */
+}
+
+td {
+    max-height: 50px;
+    padding: 0px;
+    max-width: 150px;
+    padding: 4px 4px;
+
+    border-top: 1px solid rgb(117, 123, 131);
+
+    overflow: hidden;
+
+    & a {
+        text-decoration: none;
+        color: blue;
+    }
+
+    & a:hover {
+        display: block;
+        text-decoration: underline;
+        font-weight: 500;
+    }
+
+    & a:visited {
+        text-decoration: none;
+        color: blue;
+
+    }
+}
+
+td:first-of-type {
+    padding-left: 10px;
+}
+
+.titleBar {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* ADD PRODUCT PAGE */
@@ -99,4 +208,34 @@ footer {
     align-items: center;
     gap: 12px;
 
+}
+
+.addAnchor {
+    /* display: flex; */
+    max-width: 45px;
+    text-decoration: none;
+    color: rgb(67, 72, 77);
+    align-self: center;
+    margin-top: 13px;
+}
+
+.addAnchor:hover {
+    text-decoration: underline;
+
+}
+
+.addAnchor:visited {
+    color: rgb(67, 72, 77);
+}
+
+.add {
+    background-color: hsl(155, 79%, 48%);
+    padding: 7px;
+    border-radius: 10px;
+    max-width: 60px;
+    width: 60px;
+    max-height: 80px;
+    text-align: center;
+    font-weight: 600;
+    box-sizing: border-box;
 }

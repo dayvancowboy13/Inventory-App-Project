@@ -7,24 +7,38 @@
 <body>
     <%- include('./partials/header.ejs') %>
         <div class="mainContainer">
-            <h1>Manufacturers</h1>
-            <a href="/manufacturers/add">
-                <div class="addManufacturer">Add Manufacturer</div>
-            </a>
+            <div class="titleBar">
+                <h1>Manufacturers</h1>
+                <a class="addAnchor" href="/manufacturers/add">
+                    <div class="add">Add</div>
+                </a>
+            </div>
             <div class="manufacturersContainer">
-                <ul>
+                <table class="manufacturersTable">
+                    <tr class="tableHeader">
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                        <th></th>
+                    </tr>
                     <% if(locals.manufacturers) {%>
                         <% manufacturers.forEach(manu=> {%>
-                            <li>
-                                Name: <%= manu.manu_name %> <br>
-                                    Location: <%= manu.location %> <br>
-                                        Notes: <%= manu.notes %> <br>
-                                            ID: <%= manu.manufacturer_id %> <br>
-                                                <a href="/manufacturers/edit/<%= manu.manufacturer_id %>">Edit</a>
-                            </li> <br>
+                            <tr>
+                                <td>
+                                    <%= manu.manu_name %>
+                                </td>
+                                <td>
+                                    <%= manu.location %>
+                                </td>
+                                <td>
+                                    <%= manu.notes %>
+                                </td>
+                                <td><a href="/manufacturers/edit/<%= manu.manufacturer_id %>">Edit</a></td>
+
+                            </tr>
                             <% });%>
                                 <% }%>
-                </ul>
+                </table>
             </div>
         </div>
 

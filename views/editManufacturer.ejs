@@ -10,25 +10,30 @@
             <h1>Make changes to the manufacturer:</h1>
 
             <% if(locals.manInfo) {%>
-                <div class="productDetailCard">
+                <div class="editContainer">
                     <% manInfo.forEach(m=> {%>
-                        <div class="editManufacturerDetails">
-                            <form action="/manufacturers/edit/<%= m.manufacturer_id %>" method="POST">
-                                <label for="manufacturerName">Name:</label>
+                        <form action="/manufacturers/edit/<%= m.manufacturer_id %>" method="POST">
+                            <div class="formItem">
+                                <label for="manufacturerName">Name:</label><br>
                                 <input type="text" name="manufacturerName" id="manufacturerName"
-                                    value="<%= m.manu_name %>"><br>
-                                <label for="manufacturerLocation">Name:</label>
+                                    value="<%= m.manu_name %>">
+                            </div>
+                            <div class="formItem">
+                                <label for="manufacturerLocation">Location:</label><br>
                                 <input type="text" name="manufacturerLocation" id="manufacturerLocation"
-                                    value="<%= m.location %>"><br>
-                                <label for="manufacturerNotes">Description:</label>
-                                <textarea name="manufacturerNotes" id="manufacturerNotes"><%= m.notes %></textarea>
-                                <br><br>
-                                <button type="submit" id="submitEditBtn" class="editItem"
-                                    data-id="<%- m.manufacturer_id%>">Submit Edit</button>
-                            </form>
-                            <button id="cancelEditBtn" class="editItem" data-id="<%- m.manufacturer_id%>">Cancel
-                                Edit</button>
-                        </div>
+                                    value="<%= m.location %>">
+                            </div>
+                            <div class="formItem">
+                                <label for="manufacturerNotes">Description:</label><br>
+                                <textarea name="manufacturerNotes" id="manufacturerNotes"
+                                    rows="4"><%= m.notes %></textarea>
+                            </div>
+
+                            <button type="submit" id="submitEditBtn" class="editItem"
+                                data-id="<%- m.manufacturer_id%>">Submit Edit</button>
+                        </form>
+                        <button id="cancelEditBtn" class="editItem" data-id="<%- m.manufacturer_id%>">Cancel
+                            Edit</button>
                         <% });%>
                             <% }%>
                 </div>

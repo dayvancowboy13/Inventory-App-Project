@@ -10,22 +10,25 @@
             <h1>Make changes to the category:</h1>
 
             <% if(locals.catInfo) {%>
-                <div class="productDetailCard">
+                <div class="editContainer">
                     <% catInfo.forEach(c=> {%>
-                        <div class="editCategoryDetails">
-                            <form action="/categories/edit/<%= c.category_id %>" method="POST">
-                                <label for="categoryName">Name:</label>
-                                <input type="text" name="categoryName" id="categoryName" value="<%= c.cat_name %>"><br>
-                                <label for="categoryDescription">Description:</label>
-                                <textarea name="categoryDescription"
-                                    id="categoryDescription"><%= c.description %></textarea>
-                                <br><br>
-                                <button type="submit" id="submitEditBtn" class="editItem"
-                                    data-id="<%- c.category_id%>">Submit Edit</button>
-                            </form>
-                            <button id="cancelEditBtn" class="editItem" data-id="<%- c.category_id%>">Cancel
-                                Edit</button>
-                        </div>
+
+                        <form action="/categories/edit/<%= c.category_id %>" method="POST">
+                            <div class="formItem">
+                                <label for="categoryName">Name:</label><br>
+                                <input type="text" name="categoryName" id="categoryName" value="<%= c.cat_name %>">
+                            </div>
+                            <div class="formItem">
+                                <label for="categoryDescription">Description:</label><br>
+                                <textarea name="categoryDescription" id="categoryDescription"
+                                    rows="4"><%= c.description %></textarea>
+                            </div>
+                            <button type="submit" id="submitEditBtn" class="editItem"
+                                data-id="<%- c.category_id%>">Submit Edit</button>
+                        </form>
+                        <button id="cancelEditBtn" class="editItem" data-id="<%- c.category_id%>">Cancel
+                            Edit</button>
+
                         <% });%>
                             <% }%>
                 </div>

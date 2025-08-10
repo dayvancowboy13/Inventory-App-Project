@@ -218,16 +218,19 @@ label {
 
 .addProductContainer,
 .addCategoryContainer,
-.addManufacturerContainer {
+.addManufacturerContainer,
+.editContainer {
     display: flex;
     flex-direction: column;
     background-color: rgb(236, 236, 236);
     padding: 25px;
 }
 
-.addProductContainer>form,
-.addCategoryContainer>form,
-.addManufacturerContainer>form {
+.editCategoryDetails {
+    display: flex;
+}
+
+form {
     display: flex;
     flex-direction: column;
     /* justify-items: center; */
@@ -259,7 +262,9 @@ label {
     }
 }
 
-.submitToTbBtn {
+.submitToDbBtn,
+button.editItem,
+#deleteItemBtn {
     font-size: 16px;
     background-color: hsl(229, 90%, 59%);
     border: none;
@@ -269,10 +274,29 @@ label {
     font-weight: 50;
 }
 
-.submitToTbBtn:hover {
+.submitToDbBtn:hover,
+button.editItem:hover,
+#deleteItemBtn:hover {
     cursor: pointer;
     background-color: hsl(229, 90%, 49%);
     box-shadow: rgb(170, 170, 170) 0px 8px 14px;
+}
+
+button#cancelEditBtn,
+#deleteItemBtn {
+    background-color: hsl(0, 90%, 59%);
+    scale: 90%;
+    align-self: center;
+}
+
+button#cancelEditBtn:hover,
+#deleteItemBtn:hover {
+    background-color: hsl(0, 90%, 49%);
+}
+
+#deleteItemBtn {
+    justify-self: center;
+    align-self: center;
 }
 
 .addAnchor {

@@ -10,7 +10,7 @@
             <h1>More info on the product!</h1>
 
             <% if(locals.product) {%>
-                <div class="productDetailCard">
+                <div class="detailContainer">
                     <% product.forEach(p=> {%>
                         <div class="productDetailsBody">
                             Name: <%= p.item_name %> <br>
@@ -19,47 +19,56 @@
                                         Qty: <%= p.quantity %> <br>
                                             Category: <%= p.cat_name %> <br>
                                                 Description: <%= p.description %> <br>
-                                                    ID: <%= p.item_id %> <br>
+                                                    <br>
 
+                                                    <button type="submit" id="deleteItemBtn" class="deleteItem"
+                                                        data-id="<%- p.item_id%>">Delete</button>
+                                                    <button type="submit" id="editItemBtn" class="editItem"
+                                                        data-id="<%- p.item_id%>">Edit</button></div>
 
-                                                        <br>
-
-                                                        <button type="submit" id="deleteItemBtn" class="deleteItem"
-                                                            data-id="<%- p.item_id%>">Delete</button>
-                                                        <button type="submit" id="editItemBtn" class="editItem"
-                                                            data-id="<%- p.item_id%>">Edit</button></div>
-
-                        <div class="editProductDetails" style="display:none">
+                        <div class="editContainer" style="display:none">
                             <form action="/products/edit/<%= p.item_id %>" method="POST">
-                                <label for="productName">Name:</label>
-                                <input type="text" name="productName" id="productName" value="<%= p.item_name %>"><br>
-                                <label for="selectManufacturer">Manufacturer:</label>
-                                <select name="manufacturer" id="selectManufacturer">
-                                    <% manufacturers.forEach(manu=> { %>
-                                        <option value="<%= manu.manu_name %>" <% if(p.manu_name===manu.manu_name) {%>
-                                            selected <%}%> >
-                                                <%= manu.manu_name %>
-                                        </option>
-                                        <% }); %>
-                                </select><br>
-                                <label for="productPrice">Price: </label>
-                                <input type="number" name="productPrice" id="productPrice" value="<%= p.price %>"><br>
-                                <label for="productQuantity">Quantity:</label>
-                                <input type="number" name="productQuantity" id="productQuantity"
-                                    value="<%= p.quantity %>"><br>
-                                <label for="selectCategory">Category:</label>
-                                <select name="productCategory" id="selectCategory">
-                                    <% categories.forEach(cat=> { %>
-                                        <option value="<%= cat.cat_name %>" <% if(p.cat_name===cat.cat_name) {%>
-                                            selected <% } %>>
-                                                <%= cat.cat_name %>
-                                        </option>
-                                        <% }); %>
-                                </select><br>
-                                <label for="productDescription">Description:</label>
-                                <textarea name="productDescription"
-                                    id="productDescription"><%= p.description %></textarea>
-                                <br><br>
+                                <div class="formItem">
+                                    <label for="productName">Name:</label><br>
+                                    <input type="text" name="productName" id="productName" value="<%= p.item_name %>">
+                                </div>
+                                <div class="formItem">
+                                    <label for="selectManufacturer">Manufacturer:</label><br>
+                                    <select name="manufacturer" id="selectManufacturer">
+                                        <% manufacturers.forEach(manu=> { %>
+                                            <option value="<%= manu.manu_name %>" <% if(p.manu_name===manu.manu_name)
+                                                {%>
+                                                selected <%}%> >
+                                                    <%= manu.manu_name %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                </div>
+                                <div class="formItem">
+                                    <label for="productPrice">Price: </label><br>
+                                    <input type="number" name="productPrice" id="productPrice" value="<%= p.price %>">
+                                </div>
+                                <div class="formItem">
+                                    <label for="productQuantity">Quantity:</label><br>
+                                    <input type="number" name="productQuantity" id="productQuantity"
+                                        value="<%= p.quantity %>">
+                                </div>
+                                <div class="formItem">
+                                    <label for="selectCategory">Category:</label><br>
+                                    <select name="productCategory" id="selectCategory">
+                                        <% categories.forEach(cat=> { %>
+                                            <option value="<%= cat.cat_name %>" <% if(p.cat_name===cat.cat_name) {%>
+                                                selected <% } %>>
+                                                    <%= cat.cat_name %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                </div>
+                                <div class="formItem">
+                                    <label for="productDescription">Description:</label><br>
+                                    <textarea name="productDescription" id="productDescription"
+                                        rows="4"><%= p.description %></textarea>
+                                </div>
                                 <button type="submit" id="submitEditBtn" class="editItem"
                                     data-id="<%- p.item_id%>">Submit Edit</button>
                             </form>
@@ -95,15 +104,15 @@
 
                 editBtn.addEventListener('click', () => {
                     let staticDetails = document.querySelector('.productDetailsBody');
-                    let editDetails = document.querySelector('.editProductDetails');
+                    let editDetails = document.querySelector('.editContainer');
                     staticDetails.style.display = 'none';
-                    editDetails.style.display = 'block';
+                    editDetails.style.display = 'flex';
 
                 });
 
                 submitEditBtn.addEventListener('click', () => {
                     let staticDetails = document.querySelector('.productDetailsBody');
-                    let editDetails = document.querySelector('.editProductDetails');
+                    let editDetails = document.querySelector('.editContainer');
 
                     staticDetails.style.display = 'block';
                     editDetails.style.display = 'none';
@@ -111,7 +120,7 @@
 
                 cancelEditBtn.addEventListener('click', () => {
                     let staticDetails = document.querySelector('.productDetailsBody');
-                    let editDetails = document.querySelector('.editProductDetails');
+                    let editDetails = document.querySelector('.editContainer');
 
                     staticDetails.style.display = 'block';
                     editDetails.style.display = 'none';

@@ -4,7 +4,7 @@ const { body, validationResult } = require("express-validator");
 const validateCategory = [
     body('categoryName').trim().isLength({ min: 1, max: 30 })
         .withMessage('Category name must be between 1 and 30 characters')
-        .isAlphanumeric().withMessage('Category name can only contain letters or numbers'),
+        .matches(/^[a-zA-Z0-9 ]+$/).withMessage('Category name can only contain letters, numbers, or spaces'),
     body('categoryDescription').trim().isLength({ max: 200 })
         .withMessage('Category description must contain fewer than 200 characters')
 ];
@@ -51,14 +51,38 @@ exports.getEditPage = async (req, res) => {
     const id = Number(req.url.split('/')[2]);
     const catInfo = await db.getCategoryById(id);
     res.render('editCategory', { catInfo });
-};
+}
 
-exports.postEditCategory = async (req, res) => {
-    const id = Number(req.url.split('/')[2]);
-    await db.updateCategory(
-        id,
-        req.body.categoryName,
-        req.body.categoryDescription
-    );
-    res.redirect('/categories');
-};
+// exports.postEditCategory = async (req, res) => {
+//     const id = Number(req.url.split('/')[2]);
+//     await db.updateCategory(
+//         id,
+//         req.body.categoryName,
+//         req.body.categoryDescription
+//     );
+//     res.redirect('/categories');
+// }
+
+exports.postEditCategory = [
+    validateCategory, async (req, res) => {
+        const errors = validationResult(req);
+        const id = Number(req.url.split('/')[2]);
+        if (!errors.isEmpty()) {
+            const catInfo = await db.getCategoryById(id);
+            return res.status(400).render('editCategory',
+                {
+                    catInfo,
+                    errors: errors.array(),
+                }
+            )
+        } else {
+            await db.updateCategory(
+                id,
+                req.body.categoryName,
+                req.body.categoryDescription
+            );
+            res.redirect('/categories');
+        }
+
+    }
+]

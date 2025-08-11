@@ -30,8 +30,9 @@
                             Edit</button>
 
                         <% });%>
-                            <% }%>
                 </div>
+                <% }%>
+                    <%- include('./partials/errors.ejs') %>
         </div>
 
         <%- include('./partials/footer.ejs') %>
@@ -39,22 +40,6 @@
                 // const delBtn = document.querySelector("button#deleteItemBtn");
                 const cancelEditBtn = document.querySelector("button#cancelEditBtn");
                 const submitEditBtn = document.querySelector("button#submitEditBtn");
-
-                // delBtn.addEventListener('click', e => {
-                //     const ep = `/products/${delBtn.dataset.id}`;
-                //     console.log(ep)
-                //     let delCheck = confirm('Are you sure you want to delete this item from the database?')
-                //     if (delCheck) {
-                //         fetch(ep, {
-                //             method: 'DELETE'
-                //         }).then((response) => response.json())
-                //             .then((data) => {
-                //                 console.log(data.redirect);
-                //                 window.location.href = data.redirect
-                //             })
-                //             .catch(err => console.log(typeof err));
-                //     }
-                // });
 
                 submitEditBtn.addEventListener('click', () => {
                     console.log('submit clicked')

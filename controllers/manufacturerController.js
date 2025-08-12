@@ -1,4 +1,5 @@
 const db = require('../db/queries');
+const { body, validationResult } = require("express-validator");
 
 exports.get = async (req, res) => {
     let content = await db.getManufacturers();

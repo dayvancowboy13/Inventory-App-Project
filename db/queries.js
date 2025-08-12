@@ -1,23 +1,23 @@
 const pool = require('./pool');
 
-//  item_id | name | description | manufacturer_id | category_id | price | quantity | image
+//  product_id | name | description | manufacturer_id | category_id | price | quantity | image
 
-exports.getAllItems = async function () {
-    console.log('Querying for items...');
-    const { rows } = await pool.query(`SELECT item_id, item_name, items.description, 
-        manufacturers.manu_name, categories.cat_name, price, quantity, image FROM items
-        INNER JOIN manufacturers ON items.manufacturer_id = manufacturers.manufacturer_id
-        INNER JOIN categories ON items.category_id = categories.category_id ORDER BY item_id`);
+exports.getAllProducts = async function () {
+    console.log('Querying for products...');
+    const { rows } = await pool.query(`SELECT product_id, product_name, products.description, 
+        manufacturers.manu_name, categories.cat_name, price, quantity, image FROM products
+        INNER JOIN manufacturers ON products.manufacturer_id = manufacturers.manufacturer_id
+        INNER JOIN categories ON products.category_id = categories.category_id ORDER BY product_id`);
     return rows;
 }
 
-exports.getItemById = async function (id) {
-    console.log('retreiving item from db with id ', id);
-    const { rows } = await pool.query(`SELECT item_id, item_name, items.description, 
-        manufacturers.manu_name, categories.cat_name, price, quantity, image FROM items
-        INNER JOIN manufacturers ON items.manufacturer_id = manufacturers.manufacturer_id
-        INNER JOIN categories ON items.category_id = categories.category_id
-        WHERE item_id = $1`, [id]);
+exports.getProductById = async function (id) {
+    console.log('retreiving product from db with id ', id);
+    const { rows } = await pool.query(`SELECT product_id, product_name, products.description, 
+        manufacturers.manu_name, categories.cat_name, price, quantity, image FROM products
+        INNER JOIN manufacturers ON products.manufacturer_id = manufacturers.manufacturer_id
+        INNER JOIN categories ON products.category_id = categories.category_id
+        WHERE product_id = $1`, [id]);
     return rows;
 }
 
@@ -35,9 +35,9 @@ exports.getManufacturerById = async function (id) {
     return rows;
 }
 
-exports.deleteItemById = async function (id) {
-    console.log("deleting item with id", id);
-    await pool.query(`DELETE FROM items WHERE items.item_id = $1`, [id]);
+exports.deleteProductById = async function (id) {
+    console.log("deleting product with id", id);
+    await pool.query(`DELETE FROM products WHERE products.product_id = $1`, [id]);
 }
 
 // exports.insertMessage = async function (author, message) {
@@ -73,7 +73,7 @@ exports.addProduct = async function (name, manufacturer, category, price, qty, d
     const cat_id = blah.rows[0].category_id
 
     await pool.query(`
-        INSERT INTO items (item_name, manufacturer_id, category_id, price, quantity, description) 
+        INSERT INTO products (product_name, manufacturer_id, category_id, price, quantity, description) 
         VALUES($1, $2, $3, $4, $5, $6)`, [name, man_id, cat_id, price, qty, desc]);
 }
 
@@ -89,7 +89,7 @@ exports.updateProduct = async function (id, name, manufacturer, category, price,
     const cat_id = blah.rows[0].category_id
 
     await pool.query(`
-        UPDATE items SET item_name = $1, manufacturer_id = $2, category_id = $3, price = $4, quantity = $5, description = $6 WHERE item_id = $7`, [name, man_id, cat_id, price, qty, desc, id]);
+        UPDATE products SET product_name = $1, manufacturer_id = $2, category_id = $3, price = $4, quantity = $5, description = $6 WHERE product_id = $7`, [name, man_id, cat_id, price, qty, desc, id]);
 }
 
 exports.addCategory = async function (name, description) {
@@ -120,7 +120,7 @@ exports.updateManufacturer = async function (id, name, location, notes) {
 }
 
 exports.countTableEntries = async function () {
-    var { rows } = await pool.query(`SELECT count(*) FROM items`);
+    var { rows } = await pool.query(`SELECT count(*) FROM products`);
     let productCount = Number(rows[0].count);
     var { rows } = await pool.query(`SELECT count(*) FROM categories`);
     let catCount = Number(rows[0].count);

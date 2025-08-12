@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 require("dotenv").config();
-const { INIT, DUMMY_ITEMS, DUMMY_MANU, DUMMY_CATS } = require('./dummyDataQueries');
+const { INIT, DUMMY_PRODUCTS, DUMMY_MANU, DUMMY_CATS } = require('./dummyDataQueries');
 
 async function init() {
   console.log("creating tables...");
@@ -23,9 +23,7 @@ async function populate() {
   await client.connect();
   await client.query(DUMMY_MANU);
   await client.query(DUMMY_CATS);
-  await client.query(DUMMY_ITEMS);
-  // let { rows } = await client.query(INIT);
-  // console.log(rows);
+  await client.query(DUMMY_PRODUCTS);
   await client.end();
   console.log("done");
 }

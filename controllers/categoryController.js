@@ -18,14 +18,6 @@ exports.getAddCategoryPage = async (req, res) => {
     res.render('addCategory');
 };
 
-// exports.post = async (req, res) => {
-//     await db.addCategory(
-//         req.body.categoryName,
-//         req.body.categoryDescription,
-//     )
-//     res.redirect('./');
-// };
-
 exports.postNewCategory = [
     validateCategory, async (req, res) => {
         const errors = validationResult(req);
@@ -44,24 +36,13 @@ exports.postNewCategory = [
             res.redirect('./');
         }
     }
-]
+];
 
 exports.getEditPage = async (req, res) => {
-    console.log('sending the edit page')
     const id = Number(req.url.split('/')[2]);
     const catInfo = await db.getCategoryById(id);
     res.render('editCategory', { catInfo });
-}
-
-// exports.postEditCategory = async (req, res) => {
-//     const id = Number(req.url.split('/')[2]);
-//     await db.updateCategory(
-//         id,
-//         req.body.categoryName,
-//         req.body.categoryDescription
-//     );
-//     res.redirect('/categories');
-// }
+};
 
 exports.postEditCategory = [
     validateCategory, async (req, res) => {
@@ -85,4 +66,4 @@ exports.postEditCategory = [
         }
 
     }
-]
+];

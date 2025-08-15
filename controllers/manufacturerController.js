@@ -19,7 +19,7 @@ exports.getManufacturerPage = async (req, res) => {
 
 exports.getAddManufacturerPage = async (req, res) => {
     res.render('addManufacturer');
-}
+};
 
 exports.postNewManufacturer = [
     validateManufacturer, async (req, res) => {
@@ -40,10 +40,10 @@ exports.postNewManufacturer = [
             );
             res.redirect('./');
         }
-    }]
+    }
+];
 
 exports.getEditPage = async (req, res) => {
-    console.log('sending the edit page')
     const id = Number(req.url.split('/')[2]);
     const manInfo = await db.getManufacturerById(id);
     res.render('editManufacturer', { manInfo });
@@ -73,4 +73,5 @@ exports.postEditManufacturer = [
             res.redirect('/manufacturers');
         }
 
-    }]
+    }
+];

@@ -12,6 +12,5 @@ exports.get = async (req, res) => {
 
         }
     }
-    console.log(dbCounts);
     res.render('index', { db: dbCounts });
-}
+};

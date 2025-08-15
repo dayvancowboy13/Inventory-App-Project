@@ -13,26 +13,14 @@ const validateProduct = [
 exports.getProductPage = async (req, res) => {
     let content = await db.getAllProducts();
     res.render('products', { products: content });
-}
+};
 
 exports.getCreateProductPage = async (req, res) => {
     let manufs = await db.getManufacturers();
     let cats = await db.getCategories();
 
     res.render('addProduct', { manufacturers: manufs, categories: cats });
-}
-
-// exports.postNewProduct = async (req, res) => {
-//     await db.addProduct(
-//         req.body.productName,
-//         req.body.manufacturer,
-//         req.body.productCategory,
-//         req.body.productPrice,
-//         req.body.productQuantity,
-//         req.body.productDescription
-//     )
-//     res.redirect('./');
-// }
+};
 
 exports.postNewProduct = [
     validateProduct, async (req, res) => {
@@ -58,7 +46,8 @@ exports.postNewProduct = [
             res.redirect('./');
         }
 
-    }]
+    }
+];
 
 
 exports.getDetailPage = async (req, res) => {
@@ -67,7 +56,7 @@ exports.getDetailPage = async (req, res) => {
     let manufs = await db.getManufacturers();
     let cats = await db.getCategories();
     res.render('productDetails', { product: content, manufacturers: manufs, categories: cats });
-}
+};
 
 exports.deleteProduct = async (req, res) => {
     const id = Number(req.url.slice(1));
@@ -76,10 +65,9 @@ exports.deleteProduct = async (req, res) => {
             res.json({ redirect: '/products' })
         })
         .catch(err => console.log(err));
-}
+};
 
 exports.postPasswordCheck = async (req, res) => {
-    console.log(`Checking password from user...`);
     if (String(req.body.password) != String(process.env.ADMIN_PW)) {
         console.log('Wrong password')
         res.status(404).send();
@@ -87,21 +75,7 @@ exports.postPasswordCheck = async (req, res) => {
         res.status(200).send();
         console.log('Initiating database removal...')
     }
-}
-
-// exports.editproduct = async (req, res) => {
-//     const id = Number(req.url.split('/')[2]);
-//     await db.updateProduct(
-//         id,
-//         req.body.productName,
-//         req.body.manufacturer,
-//         req.body.productCategory,
-//         req.body.productPrice,
-//         req.body.productQuantity,
-//         req.body.productDescription
-//     );
-//     res.redirect('/products/' + id);
-// }
+};
 
 exports.editProduct = [
     validateProduct, async (req, res) => {
@@ -132,4 +106,5 @@ exports.editProduct = [
             );
             res.redirect('/products/' + id);
         }
-    }]
+    }
+];

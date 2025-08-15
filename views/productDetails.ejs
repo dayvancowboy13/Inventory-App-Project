@@ -100,20 +100,58 @@
                 const editBtn = document.querySelector("button#editItemBtn");
                 const cancelEditBtn = document.querySelector("button#cancelEditBtn");
                 const submitEditBtn = document.querySelector("button#submitEditBtn");
-                delBtn.addEventListener('click', e => {
+
+                delBtn.addEventListener('click', async e => {
                     const ep = `/products/${delBtn.dataset.id}`;
-                    console.log(ep)
-                    let delCheck = confirm('Are you sure you want to delete this product from the database?')
-                    if (delCheck) {
-                        fetch(ep, {
+                    let passwordInput = await prompt('Please enter the password to perform a delete:');
+
+                    const request = new Request('/products/passwordCheck', {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ password: passwordInput }),
+                    });
+
+                    const response = await fetch(request);
+
+                    if (!response.ok) {
+                        alert("Sorry, wrong password!")
+                        throw new Error('Wrong password Error');
+                    } else {
+                        // const result = await response.json();
+                        const delResponse = await fetch(ep, {
                             method: 'DELETE'
-                        }).then((response) => response.json())
-                            .then((data) => {
-                                console.log(data.redirect);
-                                window.location.href = data.redirect
-                            })
-                            .catch(err => console.log(typeof err));
+                        });
+                        const respJSON = await delResponse.json();
+                        window.location.href = respJSON.redirect;
                     }
+                    // .then((resp) => resp.json())
+                    //     .then(data => {
+
+                    //         fetch(ep, {
+                    //             method: 'DELETE'
+                    //         }).then((response) => response.json())
+                    //             .then((data) => {
+                    //                 console.log(data.redirect);
+                    //                 window.location.href = data.redirect
+                    //             })
+                    //             .catch(err => console.log(typeof err));
+                    //     })
+
+
+                    // let delCheck = confirm('Are you sure you want to delete this product from the database?')
+                    // if (delCheck) {
+                    //     fetch(ep, {
+                    //         method: 'DELETE'
+                    //     }).then((response) => response.json())
+                    //         .then((data) => {
+                    //             console.log(data.redirect);
+                    //             window.location.href = data.redirect
+                    //         })
+                    //         .catch(err => console.log(typeof err));
+                    // }
                 });
 
                 editBtn.addEventListener('click', () => {

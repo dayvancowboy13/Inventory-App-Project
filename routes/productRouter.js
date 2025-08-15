@@ -7,6 +7,7 @@ productRouter.get('/', productController.getProductPage);
 productRouter.get('/add', productController.getCreateProductPage)
 productRouter.get('/:id', productController.getDetailPage)
 productRouter.post('/add', productController.postNewProduct);
+productRouter.post('/passwordCheck', productController.postPasswordCheck)
 productRouter.delete('/:id', productController.deleteProduct);
 productRouter.post('/edit/:id', productController.editProduct);
 

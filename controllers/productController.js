@@ -1,5 +1,6 @@
 const db = require('../db/queries');
 const { body, validationResult } = require("express-validator");
+require("dotenv").config();
 
 const validateProduct = [
     body('productName').trim().isLength({ min: 1, max: 30 })
@@ -11,7 +12,6 @@ const validateProduct = [
 
 exports.getProductPage = async (req, res) => {
     let content = await db.getAllProducts();
-    console.log(content);
     res.render('products', { products: content });
 }
 
@@ -76,6 +76,17 @@ exports.deleteProduct = async (req, res) => {
             res.json({ redirect: '/products' })
         })
         .catch(err => console.log(err));
+}
+
+exports.postPasswordCheck = async (req, res) => {
+    console.log(`Checking password from user...`);
+    if (String(req.body.password) != String(process.env.ADMIN_PW)) {
+        console.log('Wrong password')
+        res.status(404).send();
+    } else {
+        res.status(200).send();
+        console.log('Initiating database removal...')
+    }
 }
 
 // exports.editproduct = async (req, res) => {

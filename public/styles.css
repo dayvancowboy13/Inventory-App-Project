@@ -100,7 +100,6 @@ h2 {
     display: flex;
     flex-direction: column;
     background-color: hsl(214, 6%, 87%);
-    /* border: 1px black dashed; */
     margin: 20px;
     min-width: 150px;
     width: 230px;
@@ -115,6 +114,28 @@ h2 {
     background-color: hsl(214, 6%, 62%);
 
     box-shadow: rgb(185, 185, 185) 0px 6px 20px;
+}
+
+#returnToProducts {
+    width: 150px;
+    color: rgb(67, 72, 77);
+
+}
+
+#returnToProductsDiv {
+    display: flex;
+    padding: 3px 6px;
+    align-items: center;
+}
+
+.linkSubElem {
+    text-align: center;
+}
+
+#returnLeftArrow {
+    font-size: 28px;
+    margin: 0 0 10px 5px;
+
 }
 
 .gotoProducts,

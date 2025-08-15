@@ -90,6 +90,12 @@
                         <% });%>
                             <% }%>
                 </div>
+                <a href="/products" class="gotoLink" id="returnToProducts">
+                    <div id="returnToProductsDiv">
+                        <div class="linkSubElem" id="returnLeftArrow">&#8592</div>
+                        <div class="linkSubElem">Return to Products</div>
+                    </div>
+                </a>
                 <%- include('./partials/errors.ejs') %>
 
         </div>
@@ -120,38 +126,12 @@
                         alert("Sorry, wrong password!")
                         throw new Error('Wrong password Error');
                     } else {
-                        // const result = await response.json();
                         const delResponse = await fetch(ep, {
                             method: 'DELETE'
                         });
                         const respJSON = await delResponse.json();
                         window.location.href = respJSON.redirect;
                     }
-                    // .then((resp) => resp.json())
-                    //     .then(data => {
-
-                    //         fetch(ep, {
-                    //             method: 'DELETE'
-                    //         }).then((response) => response.json())
-                    //             .then((data) => {
-                    //                 console.log(data.redirect);
-                    //                 window.location.href = data.redirect
-                    //             })
-                    //             .catch(err => console.log(typeof err));
-                    //     })
-
-
-                    // let delCheck = confirm('Are you sure you want to delete this product from the database?')
-                    // if (delCheck) {
-                    //     fetch(ep, {
-                    //         method: 'DELETE'
-                    //     }).then((response) => response.json())
-                    //         .then((data) => {
-                    //             console.log(data.redirect);
-                    //             window.location.href = data.redirect
-                    //         })
-                    //         .catch(err => console.log(typeof err));
-                    // }
                 });
 
                 editBtn.addEventListener('click', () => {

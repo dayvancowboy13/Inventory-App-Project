@@ -1,6 +1,7 @@
 const db = require('../db/queries');
 
 exports.get = async (req, res) => {
+
     const dbCounts = await db.countTableEntries();
     for (const key in dbCounts) {
         if (Object.prototype.hasOwnProperty.call(dbCounts, key)) {

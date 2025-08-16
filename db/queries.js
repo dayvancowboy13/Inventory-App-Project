@@ -1,5 +1,10 @@
 const pool = require('./pool');
 
+exports.checkDB = async function () {
+    console.log('Testing if db is initialized...');
+    const { rows } = await pool.query(`SELECT * FROM products`);
+};
+
 exports.getAllProducts = async function () {
     console.log('Querying for products...');
     const { rows } = await pool.query(`SELECT product_id, product_name, products.description, 

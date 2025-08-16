@@ -15,6 +15,9 @@ const productRouter = require('./routes/productRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const manufacturerRouter = require('./routes/manufacturerRouter');
 
+const checkDB = require('./db/checkDB');
+checkDB.checkDB();
+
 const PORT = Number(process.env.PORT) || 3000;
 
 app.use('/', indexRouter)

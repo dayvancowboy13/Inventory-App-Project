@@ -9,8 +9,6 @@ async function init() {
   });
   await client.connect();
   await client.query(INIT);
-  // let { rows } = await client.query(INIT);
-  // console.log(rows);
   await client.end();
   console.log("done");
 }
@@ -40,4 +38,7 @@ if (process.argv[2]) {
   }
 } else {
   console.log('no commands from commandline');
+  console.log(process.env.DATABASE_URL);
 }
+
+module.exports = { init, populate };
